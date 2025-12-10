@@ -7,16 +7,21 @@ import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router";
+import axios from "axios";
 
 const Register = () => {
   const { registerWithEmailPassword, setUser, handleGoogleSignIn } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const pass = e.target.password.value;
     const name = e.target.name.value;
-    const photoURL = e.target.photoURL.value;
+    const photoURL = e.target.photoURL;
+    const file=photoURL.files[0]
+
+    console.log(file);
+    
 
     const uppercase = /[A-Z]/;
     const lowercase = /[a-z]/;
@@ -33,25 +38,70 @@ const Register = () => {
       return alert("Password needs at least one lowercase letter");
     }
 
-    registerWithEmailPassword(email, pass)
+    const res= await axios.post(`https://api.imgbb.com/1/upload?key=c220f6de682af6f4d4e97f37e4f3a4a2`,{image:file},
+      {
+        headers:{
+          'Content-Type':'multipart/form-data'
+        }
+      }
+    )
+
+  
+
+    const mainPhotoURL=res.data.data.display_url;
+    
+    const formData={
+      name,
+      email,
+      pass,
+     mainPhotoURL,
+    }
+    
+  
+    if(res.data.success==true){
+      console.log("Backend Success:", res.data);
+
+      registerWithEmailPassword(email, pass)
       .then((userCredential) => {
         updateProfile(auth.currentUser, {
           displayName: name,
-          photoURL: photoURL,
+          photoURL: mainPhotoURL,
+          
+   
         })
           .then(() => {
             setUser(userCredential.user);
+            axios.post('http://localhost:5000/users',formData)
+            .then(res=>{
+              console.log(res);
+              
+            })
+            .catch((err)=>{
+              console.log(err);
+              
+            })
             toast.success("Registration Successful!"); 
+             console.log(userCredential.user);
           })
-          .catch((error) => {
-            toast.error("Error updating profile");
-            console.log(error);
-          });
+         
       })
       .catch((err) => {
         toast.error("Error registering user"); 
         console.log(err);
       });
+
+ 
+    }
+
+  
+    
+
+    
+    
+
+
+
+    
   };
 
   const googleSignUp = () => {
@@ -100,7 +150,7 @@ const Register = () => {
               </label>
               <input
                 name="photoURL"
-                type="text"
+                type="file"
                 className="input input-bordered w-full"
                 placeholder="Paste photo URL"
               />

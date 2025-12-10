@@ -1,5 +1,5 @@
 {
-  "name": "assignment-9-gamehub",
+  "name": "scholar_stream-client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,6 +16,7 @@
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
     "@tailwindcss/vite": "^4.1.17",
+    "axios": "^1.13.2",
     "firebase": "^12.6.0",
     "motion": "^12.23.24",
     "react": "^19.2.0",
@@ -37,5 +38,18 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "vite": "^7.2.2"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SabbirHsarkar/A11_C02-ScholarStream-Client_Side.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SabbirHsarkar/A11_C02-ScholarStream-Client_Side/issues"
+  },
+  "homepage": "https://github.com/SabbirHsarkar/A11_C02-ScholarStream-Client_Side#readme"
 }
