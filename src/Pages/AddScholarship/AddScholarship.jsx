@@ -1,40 +1,73 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import axios from "axios";
+import HookAxios from "../../Hooks/HookAxios";
 
 const AddScholarship = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
 
+  const axiosInstance=HookAxios();
+
   const handleAddScholarship = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  e.preventDefault();
+  setLoading(true);
 
-    const form = e.target;
+  const form = e.target;
+  const file = form.image.files[0]; 
 
+  
+   
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=c220f6de682af6f4d4e97f37e4f3a4a2`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    const imageURL = res.data.data.display_url; 
+
+    
     const scholarshipData = {
       scholarshipName: form.scholarshipName.value,
       universityName: form.universityName.value,
-      image: form.image.files[0],
+      image: imageURL, 
       country: form.country.value,
       city: form.city.value,
-      worldRank: form.worldRank.value,
+      worldRank: parseInt (form.worldRank.value),
       subjectCategory: form.subjectCategory.value,
       scholarshipCategory: form.scholarshipCategory.value,
       degree: form.degree.value,
-      tuitionFees: form.tuitionFees.value,
-      applicationFees: form.applicationFees.value,
-      serviceCharge: form.serviceCharge.value,
+      tuitionFees:parseInt(form.tuitionFees.value) ,
+      applicationFees: parseInt (form.applicationFees.value),
+      serviceCharge: parseInt (form.serviceCharge.value),
       deadline: form.deadline.value,
       postDate: form.postDate.value,
       userEmail: user?.email,
     };
 
-    console.log("Submitted Data:", scholarshipData);
+   
+    // axios.post( "http://localhost:5000/scholarships",scholarshipData )
+    axiosInstance.post("/scholarships",scholarshipData)
+    .then(res=>{
+      console.log(res.data);
+      
+    })
+    .catch(err=>console.log(err));
+ 
     setLoading(false);
-  };
+  
+};
+
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-8 bg-white rounded-2xl shadow-xl border border-gray-200">
+    <div className="max-w-4xl mx-auto mt-1 p-8 bg-white rounded-2xl shadow-xl border border-gray-200">
       <h2 className="text-3xl font-bold text-indigo-600 mb-8 text-center">
         Add New Scholarship
       </h2>
@@ -54,7 +87,7 @@ const AddScholarship = () => {
           />
         </div>
 
-        {/* University Name */}
+        {/* University */}
         <div className="flex flex-col">
           <label className="font-semibold text-gray-700 mb-2">
             University Name
