@@ -18,11 +18,11 @@ const Register = () => {
     const pass = e.target.password.value;
     const name = e.target.name.value;
     const photoURL = e.target.photoURL;
-    const file=photoURL.files[0]
+    const file=photoURL.files[0];
+    const role = e.target.role.value;
 
-    console.log(file);
+    console.log(role);
     
-
     const uppercase = /[A-Z]/;
     const lowercase = /[a-z]/;
 
@@ -55,6 +55,7 @@ const Register = () => {
       email,
       pass,
      mainPhotoURL,
+     role
     }
     
   
@@ -93,14 +94,6 @@ const Register = () => {
  
     }
 
-  
-    
-
-    
-    
-
-
-
     
   };
 
@@ -123,6 +116,7 @@ const Register = () => {
           <h2 className="text-3xl font-bold text-center mb-6">Create an Account</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
+           
               <label className="label">
                 <span className="label-text font-semibold">Name</span>
               </label>
@@ -155,6 +149,14 @@ const Register = () => {
                 placeholder="Paste photo URL"
               />
             </div>
+
+               <select name="role" defaultValue="Choose Role" className="select select-accent">
+  <option disabled={true}>Choose Role</option>
+  <option value='student'>Student</option>
+  <option value='moderator'>Moderator</option>
+  
+</select>
+
             <div>
               <label className="label">
                 <span className="label-text font-semibold">Password</span>

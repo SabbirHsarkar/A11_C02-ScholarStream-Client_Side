@@ -52,6 +52,7 @@ const Navbar = () => {
 
         
         <div className="flex items-center gap-4">
+          
 
           
           {user ? (
@@ -75,7 +76,7 @@ const Navbar = () => {
                 className="dropdown-content menu p-3 shadow bg-white rounded-md w-48 mt-3"
               >
                 <li>
-                  <Link to="/dashboard" className="text-gray-700">
+                  <Link to="/dashboard-drop" className="text-gray-700">
                     Dashboard
                   </Link>
                 </li>
@@ -106,6 +107,13 @@ const Navbar = () => {
               </Link>
             </>
           )}
+
+             <Link
+                to="/dashboard/main"
+                className="border border-teal-600 hover:bg-teal-600 hover:text-white transition px-5 py-2 rounded-lg font-semibold text-teal-700"
+              >
+                 Dashboard
+              </Link>
         </div>
 
         {/* MOBILE MENU BUTTON */}
@@ -158,6 +166,8 @@ const Navbar = () => {
               </button>
             )}
           </ul>
+
+           
         </div>
       </div>
     </div>

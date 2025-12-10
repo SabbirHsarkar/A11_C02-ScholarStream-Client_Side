@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
     })
   },[user])
 
-  console.log(role);
+ 
   
 
   const logOut = () => {
@@ -69,7 +69,8 @@ const AuthProvider = ({ children }) => {
     user,
      logOut,
      handleGoogleSignIn,
-     loading
+     loading,
+     role
      
   };
 

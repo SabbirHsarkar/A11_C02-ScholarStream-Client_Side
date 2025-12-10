@@ -14,6 +14,9 @@ import UpdateProfile from '../Pages/UpdateProfile';
 import ForgetPass from '../Pages/ForgetPass';
 import ErrorPage from '../Pages/ErrorPage';
 import Dashboard from '../Pages/Dashboard';
+import DashboardLayout from '../DashboardLayout/DashboardLayout';
+import MainDashBoard from '../Pages/MainDashboard/MainDashBoard';
+import AddScholarship from '../Pages/AddScholarship/AddScholarship';
 
 export const router = createBrowserRouter([
   {
@@ -42,7 +45,7 @@ export const router = createBrowserRouter([
        
         },
           {
-         path: "/dashboard",
+         path: "/dashboard-drop",
     element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
        
         },
@@ -76,4 +79,20 @@ export const router = createBrowserRouter([
         
         
   },
+
+  {
+  path:'/dashboard',
+  element:<DashboardLayout></DashboardLayout>,
+  children:[
+    {
+      path:'main',
+      Component:MainDashBoard
+    },
+    {
+      path:'add-scholarship',
+      Component:AddScholarship
+    },
+  ]
+
+  }
 ]);
