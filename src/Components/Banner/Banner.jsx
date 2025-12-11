@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const Banner = () => {
   return (
     <section
-      className="relative bg-gradient-to-br from-[#0A2A6B] via-[#0F3D91] to-[#1E57C5] text-white py-24 px-6 overflow-hidden"
+      className="relative bg-gradient-to-r from-[#0B0D17] via-[#1A1F3B] to-[#2C2F50] text-white py-24 px-6 overflow-hidden"
     >
      
       <div className="absolute top-10 left-10 w-64 h-64 bg-blue-400/20 blur-3xl rounded-full"></div>
