@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 
 
+
+import Banner from '../Components/Banner/Banner';
+
+
 const Home = () => {
 
    
@@ -9,7 +13,7 @@ const Home = () => {
     }, []);
     return (
     <>
-    
+    <Banner></Banner>
     
     </>
      

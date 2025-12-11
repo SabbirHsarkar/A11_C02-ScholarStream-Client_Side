@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { 
   FaTachometerAlt, 
   FaUsers, 
   FaBook, 
   FaPlusCircle, 
   FaChartLine,
-  FaSignOutAlt,
+ FaHome ,
   FaBars,
   FaTimes
 } from "react-icons/fa";
 
 const AdminAside = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate=useNavigate();
 
   const linkStyle =
     "flex items-center gap-3 px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 transition";
@@ -104,9 +105,13 @@ const AdminAside = () => {
 
           <div className="border-t my-4"></div>
 
-          <button className="flex items-center gap-3 px-4 py-2 rounded-lg font-medium text-red-600 hover:bg-red-100 hover:text-red-700 transition">
-            <FaSignOutAlt /> Logout
-          </button>
+          <button
+  onClick={() => navigate('/')}
+  className="flex items-center gap-3 px-4 py-2 rounded-lg font-medium text-green-600 hover:bg-green-100 hover:text-green-700 transition"
+>
+  <FaHome />
+  Home
+</button>
         </nav>
       </aside>
 

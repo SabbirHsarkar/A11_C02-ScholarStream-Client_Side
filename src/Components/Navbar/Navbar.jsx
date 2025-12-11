@@ -56,7 +56,7 @@ const Navbar = () => {
 
           
           {user ? (
-            <div className="dropdown dropdown-end">
+            <><div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
@@ -65,8 +65,7 @@ const Navbar = () => {
                 <img
                   src={user?.photoURL}
                   alt="profile"
-                  className="w-10 h-10 rounded-full border border-teal-500"
-                />
+                  className="w-10 h-10 rounded-full border border-teal-500" />
                 <FaChevronDown className="text-gray-600" />
               </div>
 
@@ -89,7 +88,26 @@ const Navbar = () => {
                   </button>
                 </li>
               </ul>
+
+
             </div>
+            
+            <>
+               <Link
+                to="/dashboard/main"
+                className="border border-teal-600 hover:bg-teal-600 hover:text-white transition px-5 py-2 rounded-lg font-semibold text-teal-700"
+              >
+                 Dashboard
+              </Link>
+
+            
+            
+            </>
+            
+            
+            </>
+
+
           ) : (
             <>
               <Link
@@ -108,12 +126,7 @@ const Navbar = () => {
             </>
           )}
 
-             <Link
-                to="/dashboard/main"
-                className="border border-teal-600 hover:bg-teal-600 hover:text-white transition px-5 py-2 rounded-lg font-semibold text-teal-700"
-              >
-                 Dashboard
-              </Link>
+          
         </div>
 
         {/* MOBILE MENU BUTTON */}
