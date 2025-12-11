@@ -2,10 +2,12 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
 import HookAxios from "../../Hooks/HookAxios";
+import {useNavigate } from "react-router";
 
 const AddScholarship = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const navigate=useNavigate();
 
   const axiosInstance=HookAxios();
 
@@ -57,6 +59,10 @@ const AddScholarship = () => {
     axiosInstance.post("/scholarships",scholarshipData)
     .then(res=>{
       console.log(res.data);
+      if (res.data.insertedId) {
+      
+      navigate("/dashboard/manage-scholarship");
+    }
       
     })
     .catch(err=>console.log(err));

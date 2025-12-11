@@ -20,6 +20,7 @@ import AddScholarship from '../Pages/AddScholarship/AddScholarship';
 import ManageScholarship from '../Pages/ManageScholarship/ManageScholarship';
 import UpdateScholarship from '../Pages/UpdateScholarship';
 import AllScholarships from '../Pages/AllScholarships';
+import ScholarshipDetails from '../Pages/ScholarshipDetails/ScholarshipDetails';
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
     Component:Login,
        
         },
+        {
+  path: "/scholarship/:id",
+  Component:ScholarshipDetails
+},
          {
          path: "/signup",
     Component:Register,
