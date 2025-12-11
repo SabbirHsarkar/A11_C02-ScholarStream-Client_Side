@@ -17,6 +17,9 @@ import Dashboard from '../Pages/Dashboard';
 import DashboardLayout from '../DashboardLayout/DashboardLayout';
 import MainDashBoard from '../Pages/MainDashboard/MainDashBoard';
 import AddScholarship from '../Pages/AddScholarship/AddScholarship';
+import ManageScholarship from '../Pages/ManageScholarship/ManageScholarship';
+import UpdateScholarship from '../Pages/UpdateScholarship';
+import AllScholarships from '../Pages/AllScholarships';
 
 export const router = createBrowserRouter([
   {
@@ -29,11 +32,11 @@ export const router = createBrowserRouter([
     Component:Home,
        
         },
-    //       {
-    //      path: "/service",
-    // Component:Services,
+          {
+         path: "/all-scholarships",
+    Component:AllScholarships,
        
-    //     },
+        },
         {
          path: "/login",
     Component:Login,
@@ -91,6 +94,14 @@ export const router = createBrowserRouter([
     {
       path:'add-scholarship',
       Component:AddScholarship
+    },
+     {
+      path:'manage-scholarship',
+      Component:ManageScholarship
+    },
+     {
+      path:'update-scholarship/:id',
+      Component:UpdateScholarship
     },
   ]
 

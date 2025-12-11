@@ -20,7 +20,7 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink
-        to="/scholarships"
+        to="/all-scholarships"
         className={({ isActive }) =>
           `px-4 py-2 font-medium transition ${
             isActive ? "text-teal-600" : "text-gray-700 hover:text-teal-600"

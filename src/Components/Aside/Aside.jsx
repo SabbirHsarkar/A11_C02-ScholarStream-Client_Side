@@ -76,7 +76,7 @@ const AdminAside = () => {
           </h3>
 
           <NavLink
-            to="/dashboard/manage-scholarships"
+            to="/dashboard/manage-scholarship"
             onClick={() => setIsOpen(false)}
             className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
           >
