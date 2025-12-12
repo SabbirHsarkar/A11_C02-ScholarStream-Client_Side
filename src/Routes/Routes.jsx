@@ -15,12 +15,13 @@ import ForgetPass from '../Pages/ForgetPass';
 import ErrorPage from '../Pages/ErrorPage';
 import Dashboard from '../Pages/Dashboard';
 import DashboardLayout from '../DashboardLayout/DashboardLayout';
-import MainDashBoard from '../Pages/MainDashboard/MainDashBoard';
+
 import AddScholarship from '../Pages/AddScholarship/AddScholarship';
 import ManageScholarship from '../Pages/ManageScholarship/ManageScholarship';
 import UpdateScholarship from '../Pages/UpdateScholarship';
 import AllScholarships from '../Pages/AllScholarships';
 import ScholarshipDetails from '../Pages/ScholarshipDetails/ScholarshipDetails';
+import MyProfile from '../Pages/MyProfile/MyProfile';
 
 export const router = createBrowserRouter([
   {
@@ -93,8 +94,8 @@ export const router = createBrowserRouter([
   element:<DashboardLayout></DashboardLayout>,
   children:[
     {
-      path:'main',
-      Component:MainDashBoard
+      path:'profile',
+      Component:MyProfile
     },
     {
       path:'add-scholarship',

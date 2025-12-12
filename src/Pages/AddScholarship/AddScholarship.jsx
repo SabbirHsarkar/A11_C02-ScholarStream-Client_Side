@@ -3,13 +3,15 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
 import HookAxios from "../../Hooks/HookAxios";
 import {useNavigate } from "react-router";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddScholarship = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const navigate=useNavigate();
 
-  const axiosInstance=HookAxios();
+  // const axiosInstance=HookAxios();
+  const axiosSecure=useAxiosSecure();
 
   const handleAddScholarship = async (e) => {
   e.preventDefault();
@@ -56,7 +58,7 @@ const AddScholarship = () => {
 
    
     // axios.post( "http://localhost:5000/scholarships",scholarshipData )
-    axiosInstance.post("/scholarships",scholarshipData)
+    axiosSecure.post("/scholarships",scholarshipData)
     .then(res=>{
       console.log(res.data);
       if (res.data.insertedId) {

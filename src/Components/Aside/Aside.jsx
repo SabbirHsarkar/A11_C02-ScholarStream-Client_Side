@@ -52,7 +52,7 @@ const AdminAside = () => {
 
             
           <NavLink
-            to="/dashboard/main"
+            to="/dashboard/profile"
             onClick={() => setIsOpen(false)}
   className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
             
