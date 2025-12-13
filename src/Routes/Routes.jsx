@@ -22,6 +22,7 @@ import UpdateScholarship from '../Pages/UpdateScholarship';
 import AllScholarships from '../Pages/AllScholarships';
 import ScholarshipDetails from '../Pages/ScholarshipDetails/ScholarshipDetails';
 import MyProfile from '../Pages/MyProfile/MyProfile';
+import ManageUsers from '../Pages/ManageUsers/ManageUsers';
 
 export const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ export const router = createBrowserRouter([
      {
       path:'update-scholarship/:id',
       Component:UpdateScholarship
+    },
+     {
+      path:'manage-users',
+      Component:ManageUsers
     },
   ]
 
