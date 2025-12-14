@@ -3,6 +3,8 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const MyProfile = () => {
   const { user, role } = useContext(AuthContext);
+   const { logOut } = useContext(AuthContext);
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#e9f3ff] to-[#f7fbff] flex justify-center py-12 px-4">
@@ -39,7 +41,7 @@ const MyProfile = () => {
             <p className="mt-1 text-gray-600">
               <span className="font-medium">Role:</span>{" "}
               <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-lg text-sm">
-                {role || "User"}
+                {role}
               </span>
             </p>
 
@@ -90,9 +92,12 @@ const MyProfile = () => {
 
         {/* Logout Button */}
         <div className="text-center mt-10">
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-xl shadow-md hover:bg-blue-700 transition-all">
-            Logout
-          </button>
+         <button
+                onClick={logOut}
+                className="text-red-500 font-semibold mt-3 hover:bg-red-50 rounded-md px-3 py-2"
+              >
+                Logout
+              </button>
         </div>
       </div>
     </div>

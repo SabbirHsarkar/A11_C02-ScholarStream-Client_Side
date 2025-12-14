@@ -96,7 +96,7 @@ const Navbar = () => {
 
               {/* DASHBOARD BUTTON */}
               <Link
-                to="/dashboard/profile"
+                to="/dashboard"
                 className="border border-teal-600 hover:bg-teal-600 hover:text-white transition px-5 py-2 rounded-lg font-semibold text-teal-700 shadow-sm"
               >
                 Dashboard

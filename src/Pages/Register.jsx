@@ -45,7 +45,8 @@ const Register = () => {
         }
       }
     )
-
+ console.log(res);
+ 
   
 
     const mainPhotoURL=res.data.data.display_url;
@@ -57,6 +58,8 @@ const Register = () => {
      mainPhotoURL,
      role
     }
+    
+    console.log(formData);
     
   
     if(res.data.success==true){

@@ -7,9 +7,9 @@ const PrivateRoute = ({children}) => {
     const location=useLocation();
 
 
-    const{user,loading}=useContext(AuthContext);
+    const{user,loading,roleLoading}=useContext(AuthContext);
 
-    if(loading){
+    if(loading || roleLoading){
         return <p><span className="loading loading-dots loading-xl"></span></p>
     }
     
