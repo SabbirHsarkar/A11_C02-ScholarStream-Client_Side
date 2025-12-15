@@ -1,20 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-
 
 const Checkout = () => {
   const { id } = useParams(); // scholarshipId
   const { user } = useContext(AuthContext);
-  
-  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
   const [scholarship, setScholarship] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch scholarship details
   useEffect(() => {
     axiosSecure.get(`/scholarships/${id}`).then(res => {
       setScholarship(res.data);
@@ -30,28 +26,40 @@ const Checkout = () => {
   const serviceCharge = scholarship.serviceCharge || 0;
   const totalAmount = applicationFees + serviceCharge;
 
-  // Dummy payment success handler
+  // 🔥 Stripe Payment
   const handlePayment = async () => {
-    const applicationData = {
-      scholarshipId: scholarship._id,
-      userId: user.uid,
-      userName: user.displayName,
-      userEmail: user.email,
-      universityName: scholarship.universityName,
-      scholarshipCategory: scholarship.scholarshipCategory,
-      degree: scholarship.degree,
-      applicationFees,
-      serviceCharge,
-    };
-
     try {
-      await axiosSecure.post("/applications", applicationData);
+      // 1️⃣ create application (unpaid)
+      const appRes = await axiosSecure.post("/applications", {
+        scholarshipId: scholarship._id,
+        userId: user.uid,
+        userName: user.displayName,
+        userEmail: user.email,
+        universityName: scholarship.universityName,
+        scholarshipCategory: scholarship.scholarshipCategory,
+        degree: scholarship.degree,
+        applicationFees,
+        serviceCharge,
+      });
 
-      // Redirect to success page
-      navigate("/dashboard/payment-success/&{res.data.insertedId}");
+      const applicationId = appRes.data.insertedId;
+
+      // 2️⃣ create stripe checkout
+      const paymentRes = await axiosSecure.post(
+        "/create-payment-checkout",
+        {
+          applicationId,
+          totalAmount,
+          userEmail: user.email,
+        }
+      );
+
+      // 3️⃣ redirect to Stripe
+      window.location.replace(paymentRes.data.url);
+
     } catch (error) {
       console.log(error);
-      navigate("/payment-failed");
+      alert("Payment failed");
     }
   };
 
@@ -59,38 +67,29 @@ const Checkout = () => {
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-base-100 shadow rounded">
       <h2 className="text-2xl font-bold mb-6">Checkout</h2>
 
-      {/* Scholarship Info */}
       <div className="mb-6">
         <h3 className="text-xl font-semibold">
           {scholarship.scholarshipName}
         </h3>
         <p className="text-gray-600">{scholarship.universityName}</p>
-        <p className="text-sm">
-          {scholarship.universityCity}, {scholarship.universityCountry}
-        </p>
       </div>
 
-      {/* Fee Breakdown */}
       <div className="border rounded p-4 mb-6">
-        <div className="flex justify-between mb-2">
+        <div className="flex justify-between">
           <span>Application Fee</span>
           <span>${applicationFees}</span>
         </div>
-
-        <div className="flex justify-between mb-2">
+        <div className="flex justify-between">
           <span>Service Charge</span>
           <span>${serviceCharge}</span>
         </div>
-
         <hr className="my-2" />
-
         <div className="flex justify-between font-bold">
           <span>Total</span>
           <span>${totalAmount}</span>
         </div>
       </div>
 
-      {/* Pay Button */}
       <button
         onClick={handlePayment}
         className="btn btn-primary w-full"
