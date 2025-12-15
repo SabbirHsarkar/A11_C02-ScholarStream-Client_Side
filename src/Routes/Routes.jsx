@@ -23,6 +23,13 @@ import AllScholarships from '../Pages/AllScholarships';
 import ScholarshipDetails from '../Pages/ScholarshipDetails/ScholarshipDetails';
 import MyProfile from '../Pages/MyProfile/MyProfile';
 import ManageUsers from '../Pages/ManageUsers/ManageUsers';
+import ManageAppliedApplications from '../Pages/Moderator/ManageAppliedApplications';
+import AllReviews from '../Pages/Moderator/AllReviews';
+import MyApplications from '../Pages/Student/MyApplications';
+import ApplyScholarship from '../Pages/ApplyScholarship';
+import MyReview from '../Pages/Student/MyReview';
+import Checkout from '../Pages/Checkout/Checkout';
+import PaymentSuccess from '../Pages/PaymentSuccess';
 
 export const router = createBrowserRouter([
   {
@@ -114,6 +121,37 @@ export const router = createBrowserRouter([
       path:'manage-users',
       Component:ManageUsers
     },
+     {
+      path:'manage-application',
+      Component:ManageAppliedApplications
+    },
+    {
+      path:'all-review',
+      Component:AllReviews
+    },
+     {
+      path:'my-applications',
+      Component:MyApplications
+    },
+     {
+      path:'apply-scholarship',
+      Component:ApplyScholarship
+    },
+     {
+      path:'my-review',
+      Component:MyReview
+    },
+    {
+  path: "checkout/:id",
+  element:<Checkout>
+
+  </Checkout>},
+  {
+  path: "payment-success/:id",
+  Component:PaymentSuccess
+}
+
+
   ]
 
   }

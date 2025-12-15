@@ -106,14 +106,14 @@ const DashboardAside = () => {
             <>
               <h3 className="text-gray-400 font-semibold text-sm mt-4 mb-1">APPLICATION MANAGEMENT</h3>
               <NavLink
-                to="/dashboard/manage-applied-applications"
+                to="/dashboard/manage-application"
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
               >
                 <FaClipboardList /> Manage Applied Applications
               </NavLink>
               <NavLink
-                to="/dashboard/all-reviews"
+                to="/dashboard/all-review"
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
               >
@@ -134,7 +134,7 @@ const DashboardAside = () => {
                 <FaUniversity /> My Applications
               </NavLink>
               <NavLink
-                to="/dashboard/my-reviews"
+                to="/dashboard/my-review"
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
               >

@@ -77,7 +77,7 @@ const ScholarshipDetails = () => {
               {scholarship.applicationFee > 0 ? `$${scholarship.applicationFee}` : "Free"}
             </p>
 
-            <Link to={`/checkout/${id}`}>
+            <Link to={`/dashboard/checkout/${id}`}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
