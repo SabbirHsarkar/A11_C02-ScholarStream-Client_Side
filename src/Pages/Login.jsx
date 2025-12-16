@@ -28,7 +28,7 @@ const handleSubmit = (e) => {
     .then((userCredential) => {
       const user = userCredential.user;
       setUser(user);
-      navigate(location?.state?.from || "/profile");
+      navigate('/');
       
     })
     .catch((error) => {
