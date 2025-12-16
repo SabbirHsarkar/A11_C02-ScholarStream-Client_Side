@@ -30,6 +30,7 @@ import ApplyScholarship from '../Pages/ApplyScholarship';
 import MyReview from '../Pages/Student/MyReview';
 import Checkout from '../Pages/Checkout/Checkout';
 import PaymentSuccess from '../Pages/PaymentSuccess';
+import Analytics from '../Pages/Analytics/Analytics';
 
 export const router = createBrowserRouter([
   {
@@ -121,6 +122,11 @@ export const router = createBrowserRouter([
       path:'manage-users',
       Component:ManageUsers
     },
+    {
+      path:'analytics',
+      Component:Analytics
+    },
+
      {
       path:'manage-application',
       Component:ManageAppliedApplications
