@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import HookAxios from "../Hooks/HookAxios";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 
 const AllScholarships = () => {
@@ -97,7 +98,7 @@ const AllScholarships = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {scholarships.length > 0 ? (
           scholarships.map((item,index) => (
-            <div
+            <motion.div
               key={item._id}
              
               initial={{ opacity: 0, y: 30 }}
@@ -135,7 +136,7 @@ const AllScholarships = () => {
                   View Details
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))
         ) : (
           <p className="text-center col-span-full text-gray-500">
