@@ -127,7 +127,7 @@ const MyReviews = () => {
 
       {/* Edit Modal */}
       {showModal && selectedReview && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0  bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-8 rounded-2xl shadow-lg w-96 max-w-full">
             <h3 className="text-xl font-bold mb-4 text-center">
               Edit Review

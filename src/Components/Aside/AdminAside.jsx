@@ -96,7 +96,7 @@ const DashboardAside = () => {
                 to="/dashboard/analytics"
                 className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
               >
-                <FaChartLine /> Reports & Insights
+                <FaChartLine /> Analytics
               </NavLink>
             </>
           )}
