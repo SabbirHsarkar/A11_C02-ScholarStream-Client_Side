@@ -31,6 +31,7 @@ import MyReview from '../Pages/Student/MyReview';
 import Checkout from '../Pages/Checkout/Checkout';
 import PaymentSuccess from '../Pages/PaymentSuccess';
 import Analytics from '../Pages/Analytics/Analytics';
+import PaymentFailed from '../Pages/PaymentFailed';
 
 export const router = createBrowserRouter([
   {
@@ -155,8 +156,11 @@ export const router = createBrowserRouter([
   {
   path: "payment-success/:id",
   Component:PaymentSuccess
-}
-
+},
+  {
+  path: "payment-failed",
+  Component:PaymentFailed
+},
 
   ]
 
