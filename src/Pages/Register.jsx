@@ -8,20 +8,23 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from "react-router";
 import axios from "axios";
+import HookAxios from "../Hooks/HookAxios";
 
 const Register = () => {
+  const axiosInstance=HookAxios();
   const { registerWithEmailPassword, setUser, handleGoogleSignIn } = useContext(AuthContext);
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+
     const email = e.target.email.value;
     const pass = e.target.password.value;
     const name = e.target.name.value;
     const photoURL = e.target.photoURL;
     const file=photoURL.files[0];
-    const role = e.target.role.value;
+   
 
-    console.log(role);
+    
     
     const uppercase = /[A-Z]/;
     const lowercase = /[a-z]/;
@@ -56,7 +59,7 @@ const Register = () => {
       email,
       pass,
      mainPhotoURL,
-     role
+      role: "student"
     }
     
     console.log(formData);
@@ -75,7 +78,7 @@ const Register = () => {
         })
           .then(() => {
             setUser(userCredential.user);
-            axios.post('http://localhost:5000/users',formData)
+            axiosInstance.post('/users',formData)
             .then(res=>{
               console.log(res);
               
@@ -153,12 +156,7 @@ const Register = () => {
               />
             </div>
 
-               <select name="role" defaultValue="Choose Role" className="select select-accent">
-  <option disabled={true}>Choose Role</option>
-  <option value='student'>Student</option>
-  <option value='moderator'>Moderator</option>
   
-</select>
 
             <div>
               <label className="label">
