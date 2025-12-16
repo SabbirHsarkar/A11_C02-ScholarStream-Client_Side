@@ -5,39 +5,42 @@ import { useNavigate } from "react-router";
 const AllScholarships = () => {
   const [scholarships, setScholarships] = useState([]);
 
-  //  filter & sort states
+  // filters
   const [search, setSearch] = useState("");
   const [country, setCountry] = useState("");
-  
   const [sort, setSort] = useState("");
 
+  // pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const limit = 6;
+
   const axiosInstance = HookAxios();
-  
   const navigate = useNavigate();
 
-  //  Fetch scholarships SERVER SIDE
   useEffect(() => {
     axiosInstance
       .get("/scholarships", {
         params: {
           search,
           country,
-         
           sort,
+          page: currentPage,
+          limit,
         },
       })
       .then((res) => {
-        setScholarships(res.data);
+        setScholarships(res.data.scholarships);
+        setTotalPages(res.data.totalPages);
       })
       .catch((err) => {
         console.log("Error fetching scholarships:", err);
       });
-  }, [axiosInstance, search, country, sort]);
+  }, [axiosInstance, search, country, sort, currentPage]);
 
   const handleViewDetails = (scholarship) => {
-    navigate(`/scholarship/${scholarship._id}`, {
-      state: scholarship,
-    });
+    navigate(`/scholarship/${scholarship._id}`, { state: scholarship });
   };
 
   return (
@@ -46,22 +49,26 @@ const AllScholarships = () => {
         All Scholarships
       </h1>
 
-      {/*  SEARCH + FILTER + SORT */}
+      {/* 🔍 Filters */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        {/* Search */}
         <input
           type="text"
           placeholder="Search by scholarship / university / degree"
           className="input input-bordered w-full"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setCurrentPage(1);
+          }}
         />
 
-        {/* Country Filter */}
         <select
           className="select select-bordered w-full"
           value={country}
-          onChange={(e) => setCountry(e.target.value)}
+          onChange={(e) => {
+            setCountry(e.target.value);
+            setCurrentPage(1);
+          }}
         >
           <option value="">All Countries</option>
           <option value="USA">USA</option>
@@ -70,14 +77,13 @@ const AllScholarships = () => {
           <option value="Australia">Australia</option>
         </select>
 
-        {/* Category Filter */}
-      
-
-        {/* Sort */}
         <select
           className="select select-bordered w-full"
           value={sort}
-          onChange={(e) => setSort(e.target.value)}
+          onChange={(e) => {
+            setSort(e.target.value);
+            setCurrentPage(1);
+          }}
         >
           <option value="">Default Sort</option>
           <option value="fee_asc">Fee: Low to High</option>
@@ -87,13 +93,17 @@ const AllScholarships = () => {
         </select>
       </div>
 
-      {/*  SCHOLARSHIP CARDS */}
+      {/*  Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {scholarships.length > 0 ? (
-          scholarships.map((item) => (
+          scholarships.map((item,index) => (
             <div
               key={item._id}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200"
+             
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition"
             >
               <img
                 src={item.image}
@@ -120,7 +130,7 @@ const AllScholarships = () => {
 
                 <button
                   onClick={() => handleViewDetails(item)}
-                  className="mt-3 w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition duration-300"
+                  className="mt-3 w-full py-2 bg-indigo-600 text-white rounded-lg"
                 >
                   View Details
                 </button>
@@ -132,6 +142,37 @@ const AllScholarships = () => {
             No scholarships found
           </p>
         )}
+      </div>
+
+      {/*Pagination */}
+      <div className="flex justify-center mt-10 gap-2">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage(currentPage - 1)}
+          className="btn btn-outline"
+        >
+          Prev
+        </button>
+
+        {[...Array(totalPages).keys()].map((num) => (
+          <button
+            key={num}
+            onClick={() => setCurrentPage(num + 1)}
+            className={`btn ${
+              currentPage === num + 1 ? "btn-primary" : "btn-outline"
+            }`}
+          >
+            {num + 1}
+          </button>
+        ))}
+
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage(currentPage + 1)}
+          className="btn btn-outline"
+        >
+          Next
+        </button>
       </div>
     </div>
   );

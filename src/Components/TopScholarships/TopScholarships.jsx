@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
 import HookAxios from "../../Hooks/HookAxios";
 
-
 const TopScholarships = () => {
   const [scholarships, setScholarships] = useState([]);
   const axiosInstance = HookAxios();
@@ -12,11 +11,15 @@ const TopScholarships = () => {
   useEffect(() => {
     const fetchScholarships = async () => {
       try {
-        const res = await axiosInstance.get("/scholarships"); 
-        const sorted = res.data
-          .sort((a, b) => a.applicationFees - b.applicationFees || new Date(b.postDate) - new Date(a.postDate))
-          .slice(0, 6); // top 6 scholarships
-        setScholarships(sorted);
+        const res = await axiosInstance.get("/scholarships", {
+          params: {
+            sort: "fee_asc", // ✅ lowest application fee
+            page: 1,
+            limit: 6,        // ✅ top 6 only
+          },
+        });
+
+        setScholarships(res.data.scholarships);
       } catch (err) {
         console.log("Fetch error:", err);
       }
@@ -38,7 +41,7 @@ const TopScholarships = () => {
               key={scholarship._id}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition"
             >
               <img
@@ -46,14 +49,20 @@ const TopScholarships = () => {
                 alt={scholarship.universityName}
                 className="w-full h-40 object-cover"
               />
+
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-800">
-                  {scholarship.universityName}
+                  {scholarship.scholarshipName || scholarship.universityName}
                 </h3>
-                <p className="text-gray-500 mt-1">{scholarship.scholarshipCategory}</p>
+
+                <p className="text-gray-500 mt-1">
+                  {scholarship.scholarshipCategory}
+                </p>
+
                 <p className="text-gray-600 mt-2">
                   {scholarship.city}, {scholarship.country}
                 </p>
+
                 <p className="text-gray-700 mt-2 font-semibold">
                   {scholarship.applicationFees > 0
                     ? `$${scholarship.applicationFees} Application Fee`
@@ -61,8 +70,12 @@ const TopScholarships = () => {
                 </p>
 
                 <button
-                  onClick={() => navigate(`/scholarship-details/${scholarship._id}`, { state: scholarship })}
-                  className="mt-4 w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition"
+                  onClick={() =>
+                    navigate(`/scholarship/${scholarship._id}`, {
+                      state: scholarship,
+                    })
+                  }
+                  className="mt-4 w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition"
                 >
                   View Details
                 </button>
