@@ -97,10 +97,18 @@ const Navbar = () => {
               {/* DASHBOARD BUTTON */}
               <Link
                 to="/dashboard/profile"
-                className="border border-teal-600 hover:bg-teal-600 hover:text-white transition px-5 py-2 rounded-lg font-semibold text-teal-700 shadow-sm"
+     className="border border-teal-600 hover:bg-teal-600 hover:text-white transition px-5 py-2 rounded-lg font-semibold text-teal-700 shadow-sm"
               >
                 Dashboard
               </Link>
+
+               <button
+                      onClick={logOut}
+    className="border border-red-600 hover:bg-red-600 hover:text-white
+     transition px-5 py-2 rounded-lg font-semibold text-red-700 shadow-sm"
+                    >
+                      Logout
+                    </button>
             </>
           ) : (
             <>

@@ -150,9 +150,9 @@ export const router = createBrowserRouter([
     },
     {
   path: "checkout/:id",
-  element:<Checkout>
+  element:<PrivateRoute><Checkout>
 
-  </Checkout>},
+  </Checkout></PrivateRoute>},
   {
   path: "payment-success/:id",
   Component:PaymentSuccess

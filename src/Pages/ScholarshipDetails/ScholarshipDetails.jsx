@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import HookAxios from "../../Hooks/HookAxios";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 
 const ScholarshipDetails = () => {
   const { id } = useParams();
   const axiosInstance = HookAxios();
+  const {user}=useContext(AuthContext);
 
   const [scholarship, setScholarship] = useState(null);
   const [reviews, setReviews] = useState([]);
@@ -61,23 +63,36 @@ const ScholarshipDetails = () => {
             </p>
 
             <p className="text-xl text-gray-300 mb-2">
-              <span className="font-semibold text-purple-400">World Rank:</span> {scholarship.universityRank}
+              <span className="font-semibold text-purple-400">World Rank:</span> {scholarship?.worldRank}
             </p>
 
             <p className="text-xl text-gray-300 mb-2">
-              <span className="font-semibold text-purple-400">Deadline:</span> {scholarship.deadline}
+              <span className="font-semibold text-purple-400">Deadline:</span> {scholarship?.deadline}
             </p>
 
             <p className="text-xl text-gray-300 mb-2">
-              <span className="font-semibold text-purple-400">Location:</span> {scholarship.location}
+              <span className="font-semibold text-purple-400">Location:</span> {scholarship?.city},{scholarship?.country}
             </p>
 
             <p className="text-xl text-gray-300 mb-4">
-              <span className="font-semibold text-purple-400">Application Fees:</span> 
-              {scholarship.applicationFee > 0 ? `$${scholarship.applicationFee}` : "Free"}
+              <span className="font-semibold text-purple-400">Application Fees: </span> 
+              { scholarship?.applicationFees }
             </p>
+            {
+              (!user)? <Link to={'/login'}>
 
-            <Link to={`/dashboard/checkout/${id}`}>
+                 <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.9 }}
+                className="mt-6 px-8 py-3 bg-gradient-to-r from-pink-500 to-purple-600 
+                rounded-xl font-bold shadow-lg hover:shadow-2xl"
+              >
+                For Apply , You need to login
+              </motion.button>
+              
+              
+              </Link>:
+              <Link to={`/dashboard/checkout/${id}`}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
@@ -87,6 +102,10 @@ const ScholarshipDetails = () => {
                 Apply for Scholarship
               </motion.button>
             </Link>
+
+            }
+
+            
           </div>
         </motion.div>
 
