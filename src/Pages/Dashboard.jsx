@@ -32,7 +32,7 @@ const {  user } = useContext(AuthContext);
         <div className="grid grid-cols-3 gap-4 text-center">
           <div className="p-3 bg-white/10 rounded-xl shadow-md hover:bg-white/20 transition">
             <h3 className="text-xl font-bold">12</h3>
-            <p className="text-sm text-purple-200">Service Taken</p>
+            <p className="text-sm text-purple-200">Scholarship Visit</p>
           </div>
 
           <div className="p-3 bg-white/10 rounded-xl shadow-md hover:bg-white/20 transition">
@@ -42,7 +42,7 @@ const {  user } = useContext(AuthContext);
 
           <div className="p-3 bg-white/10 rounded-xl shadow-md hover:bg-white/20 transition">
             <h3 className="text-xl font-bold">3</h3>
-            <p className="text-sm text-purple-200">Achieve</p>
+            <p className="text-sm text-purple-200">Get Offer</p>
           </div>
         </div>
 
@@ -50,7 +50,7 @@ const {  user } = useContext(AuthContext);
         <div className="mt-8 bg-white/10 p-5 rounded-2xl shadow-md hover:bg-white/20 transition">
           <h3 className="text-lg font-semibold mb-2">About You</h3>
           <p className="text-purple-200 text-sm leading-relaxed">
-            Welcome to your Hope FOundation profile! Track your services, see your demands
+            Welcome to your ScholarStream profile! Track your scholarships, see your favorite University
             , and enjoy a personalized support experience.
           </p>
         </div>

@@ -56,7 +56,7 @@ const Navbar = () => {
         {/* RIGHT SECTION */}
         <div className="flex items-center gap-4">
 
-          {/* IF USER LOGGED IN */}
+          {/*USER LOGGED IN */}
           {user ? (
             <>
               {/* PROFILE DROPDOWN */}
@@ -79,7 +79,7 @@ const Navbar = () => {
                   className="dropdown-content menu p-3 shadow-xl bg-white rounded-xl w-52 mt-3 border border-teal-100"
                 >
                   <li>
-                    <Link to="/dashboard-drop" className="text-gray-700 hover:text-teal-600">
+                    <Link to="/dashboard/profile" className="text-gray-700 hover:text-teal-600">
                       Dashboard
                     </Link>
                   </li>
@@ -94,7 +94,7 @@ const Navbar = () => {
                 </ul>
               </div>
 
-              {/* DASHBOARD BUTTON */}
+              {/* DASHBOARD  */}
               <Link
                 to="/dashboard/profile"
      className="border border-teal-600 hover:bg-teal-600 hover:text-white transition px-5 py-2 rounded-lg font-semibold text-teal-700 shadow-sm"

@@ -182,7 +182,7 @@ const MyApplications = () => {
               <strong>University:</strong> {selectedApp.universityName}
             </p>
             <p>
-              <strong>Address:</strong> {selectedApp.universityAddress}
+              <strong>Address:</strong> {selectedApp.city}
             </p>
             <p>
               <strong>Degree:</strong> {selectedApp.degree}

@@ -150,23 +150,23 @@ const ScholarshipDetails = () => {
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <img
-                      src={review.reviewerImage}
+                      src={review?.userImage}
                       alt="Reviewer"
                       className="w-12 h-12 rounded-full ring-2 ring-purple-500"
                     />
                     <div>
-                      <h3 className="font-semibold">{review.reviewerName}</h3>
-                      <p className="text-gray-400 text-sm">{review.date}</p>
+                      <h3 className="font-semibold">{review?.userName}</h3>
+                      <p className="text-gray-400 text-sm">{review?.reviewDate}</p>
                     </div>
                   </div>
 
                   <div className="flex items-center mb-3">
-                    {[...Array(review.rating)].map((_, i) => (
+                    {[...Array(review?.ratingPoint)].map((_, i) => (
                       <FaStar key={i} className="text-yellow-400" />
                     ))}
                   </div>
 
-                  <p className="text-gray-300">{review.comment}</p>
+                  <p className="text-gray-300">{review?.reviewComment}</p>
                 </motion.div>
               ))}
             </div>
