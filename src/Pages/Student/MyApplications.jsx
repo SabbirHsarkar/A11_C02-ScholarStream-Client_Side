@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { IoIosStarOutline } from "react-icons/io";
 
 const MyApplications = () => {
   const { user } = useContext(AuthContext);
@@ -111,7 +112,8 @@ const MyApplications = () => {
               <td className="font-semibold">{app.universityName}</td>
               <td>{app.universityAddress || "—"}</td>
               <td>{app.scholarshipCategory}</td>
-              <td>${app.applicationFees}</td>
+              <td>{app.applicationFees}</td>
+              
               <td>
                 <span
                   className={`badge 
@@ -124,7 +126,7 @@ const MyApplications = () => {
                   {app.applicationStatus}
                 </span>
               </td>
-              <td>{"—"}</td> {/* Placeholder, review fetch optional */}
+              <td>{app.feedback}</td> {/* Placeholder, review fetch optional */}
               <td className="flex gap-2">
                 <button
                   onClick={() => {
@@ -203,7 +205,7 @@ const MyApplications = () => {
               <strong>Payment Status:</strong> {selectedApp.paymentStatus}
             </p>
             <p>
-              <strong>Feedback:</strong> {"—"}
+              <strong>Feedback:</strong> {selectedApp.feedback}
             </p>
             <button
               onClick={() => setShowDetails(false)}
@@ -234,7 +236,7 @@ const MyApplications = () => {
                     } transition-transform hover:scale-110`}
                     onClick={() => setRating(star)}
                   >
-                    ★
+                    <IoIosStarOutline />
                   </span>
                 ))}
               </div>

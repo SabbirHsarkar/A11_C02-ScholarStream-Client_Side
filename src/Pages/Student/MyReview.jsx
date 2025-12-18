@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { IoIosStarOutline } from "react-icons/io";
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
@@ -144,7 +145,7 @@ const MyReviews = () => {
                     }`}
                     onClick={() => setRating(star)}
                   >
-                    ★
+                  <IoIosStarOutline />
                   </span>
                 ))}
               </div>

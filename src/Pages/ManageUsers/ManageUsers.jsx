@@ -127,7 +127,7 @@ const handleDelete = (id) => {
             {filteredUsers.map((u) => (
               <tr
                 key={u._id}
-                className="border-t hover:bg-gray-50 transition"
+                className="border-t hover:bg-gray-50 transition "
               >
                 <td className="px-4 py-3 font-medium">
                   {u.name || "N/A"}
@@ -135,7 +135,7 @@ const handleDelete = (id) => {
                 <td className="px-4 py-3">{u.email}</td>
                 <td className="px-4 py-3 capitalize">{u.role}</td>
 
-                <td className="px-4 py-3 text-center space-x-2">
+                <td className="px-4 py-3 text-center space-x-2 ">
                   {/* Promote / Demote */}
                   {u.role !== "admin" && (
                     <button
