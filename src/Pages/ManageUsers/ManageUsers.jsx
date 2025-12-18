@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -37,16 +38,55 @@ const ManageUsers = () => {
 
   // Delete user
      
-  const handleDelete = (id) => {
-  axiosSecure
-    .delete(`/users/${id}`)   
-    .then((res) => {
-      if (res.data.deletedCount > 0) {
-        setUsers((prev) => prev.filter((u) => u._id !== id));
-        alert("User deleted successfully!");
-      }
-    })
-    .catch((err) => console.log(err));
+//   const handleDelete = (id) => {
+//   axiosSecure.delete(`/users/${id}`)   
+//     .then((res) => {
+//       console.log(res.data);
+//       if (res.data.deletedCount > 0) {
+//         setUsers((prev) => prev.filter((u) => u._id !== id));
+//         alert("User deleted successfully!");
+//       }
+//     })
+//     .catch((err) => console.log(err));
+// };
+
+const handleDelete = (id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "This user will be permanently deleted!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axiosSecure.delete(`/users/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            setUsers((prev) =>
+              prev.filter((u) => u._id !== id)
+            );
+
+            Swal.fire({
+              title: "Deleted!",
+              text: "User has been deleted successfully.",
+              icon: "success",
+              timer: 1500,
+              showConfirmButton: false,
+            });
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          Swal.fire({
+            title: "Error!",
+            text: "Failed to delete user.",
+            icon: "error",
+          });
+        });
+    }
+  });
 };
 
 
