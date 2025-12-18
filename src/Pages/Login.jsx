@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../firebase/firebase.config";
 import { FcGoogle } from "react-icons/fc";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -16,25 +17,66 @@ const Login = () => {
   
 
 
+// const handleSubmit = (e) => {
+//   e.preventDefault();
+  
+//   const email = e.target.email.value;
+//   const pass = e.target.password.value;
+
+  
+
+//   signInWithEmailAndPassword(auth, email, pass)
+//     .then((userCredential) => {
+//       const user = userCredential.user;
+//       setUser(user);
+//       navigate('/');
+      
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
+
 const handleSubmit = (e) => {
   e.preventDefault();
   
   const email = e.target.email.value;
   const pass = e.target.password.value;
 
-  
-
   signInWithEmailAndPassword(auth, email, pass)
     .then((userCredential) => {
       const user = userCredential.user;
       setUser(user);
+
+      Swal.fire({
+        icon: "success",
+        title: "Login Successful!",
+        text: "Welcome back ",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
       navigate('/');
-      
     })
     .catch((error) => {
-      console.log(error);
+      let message = "Login failed";
+
+      if (error.code === "auth/wrong-password") {
+        message = "Incorrect password ";
+      } else if (error.code === "auth/user-not-found") {
+        message = "No account found with this email ";
+      } else if (error.code === "auth/invalid-email") {
+        message = "Invalid email format ";
+      }
+
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: message,
+      });
     });
 };
+
 
 console.log(user);
 

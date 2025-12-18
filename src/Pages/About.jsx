@@ -2,61 +2,106 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="min-h-screen  text-black py-12 px-6">
-      <div className="max-w-4xl mx-auto bg-white p-8 rounded-3xl shadow-lg bg-opacity-30 backdrop-blur-lg">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-6 text-[#3A0CA3]">
-            About Sabbir Hossain Sarkar
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-14 px-5">
+      <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-10">
+
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-extrabold text-indigo-700 mb-4">
+            About ScholarStream
           </h1>
-          <p className="text-xl font-medium text-black-300 mb-8">
-            A brief overview of who I am, my vision, and my journey.
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            A modern scholarship management platform designed to simplify
+            scholarship discovery, application, and administration.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#4B0082]">Bio</h2>
-            <p className="text-lg text-black leading-relaxed">
-              Hi, I'm Sabbir Hossain Sarkar! I am passionate about technology,
-              software development, and making a difference in the world. With a
-              strong academic background in Computer Science and Engineering,
-              I'm always exploring new ideas and techniques to build innovative
-              solutions. My goal is to use my skills to create impactful
-              applications and contribute to the tech community.
+        {/* Main Content */}
+        <div className="grid md:grid-cols-2 gap-10">
+
+          {/* Left */}
+          <div>
+            <h2 className="text-2xl font-bold text-indigo-600 mb-4">
+              What is ScholarStream?
+            </h2>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              ScholarStream is a centralized scholarship management system that
+              connects students, moderators, and administrators on a single
+              platform.
+              <br /><br />
+              Students can explore available scholarships, submit applications,
+              and track their progress, while moderators and admins can manage
+              scholarships, review applications, and ensure platform integrity.
             </p>
           </div>
 
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#4B0082]">
-              Skills & Expertise
+          {/* Right */}
+          <div>
+            <h2 className="text-2xl font-bold text-indigo-600 mb-4">
+              Core Features
             </h2>
-            <ul className="list-disc pl-6 text-lg text-black">
-              <li>Web Development (HTML, CSS, JavaScript, React, Node.js)</li>
-              <li>Backend Development (Node.js, Express, MySQL)</li>
-              <li>AI & Machine Learning</li>
-              <li>Cloud Computing (AWS, Firebase)</li>
-              <li>Project Management & Agile Methodologies</li>
+            <ul className="space-y-3 text-lg text-gray-700">
+              <li>🎓 Browse and search scholarships with advanced filters</li>
+              <li>📝 Online scholarship application system</li>
+              <li>💳 Secure application fee payment integration</li>
+              <li>⭐ Review and rating system for scholarships</li>
+              <li>🛡 Role-based access (Student, Moderator, Admin)</li>
+              <li>📊 Admin dashboard with analytics and user management</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 text-center">
-          <h2 className="text-2xl font-semibold text-[#4B0082]">
-            Get in Touch
+        {/* Vision */}
+        <div className="mt-12 bg-indigo-50 rounded-2xl p-8">
+          <h2 className="text-2xl font-bold text-indigo-700 mb-3 text-center">
+            Our Vision
           </h2>
-          <p className="text-lg text-gray-300 mt-4">
-            Feel free to reach out to me for any collaborations, ideas, or just
-            to connect!
+          <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto">
+            ScholarStream aims to make scholarship opportunities more
+            transparent, accessible, and efficient by leveraging modern web
+            technologies and secure digital processes.
           </p>
-          <div className="mt-6">
-            <a
-              href="mailto:sabbirhossainarkar575@gmail.com"
-              className="btn btn-primary"
-            >
-              Email Me
-            </a>
+        </div>
+
+        {/* Tech Stack */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold text-indigo-700 mb-6 text-center">
+            Technology Stack
+          </h2>
+
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 text-center">
+            <div className="bg-white border rounded-xl p-5 shadow-sm">
+              <p className="font-semibold text-gray-800">Frontend</p>
+              <p className="text-gray-600">React, Tailwind CSS, DaisyUI</p>
+            </div>
+
+            <div className="bg-white border rounded-xl p-5 shadow-sm">
+              <p className="font-semibold text-gray-800">Backend</p>
+              <p className="text-gray-600">Node.js, Express.js</p>
+            </div>
+
+            <div className="bg-white border rounded-xl p-5 shadow-sm">
+              <p className="font-semibold text-gray-800">Database</p>
+              <p className="text-gray-600">MongoDB</p>
+            </div>
+
+            <div className="bg-white border rounded-xl p-5 shadow-sm">
+              <p className="font-semibold text-gray-800">Authentication</p>
+              <p className="text-gray-600">Firebase, JWT</p>
+            </div>
+
+            <div className="bg-white border rounded-xl p-5 shadow-sm">
+              <p className="font-semibold text-gray-800">Payments</p>
+              <p className="text-gray-600">Stripe</p>
+            </div>
+
+            <div className="bg-white border rounded-xl p-5 shadow-sm">
+              <p className="font-semibold text-gray-800">Deployment</p>
+              <p className="text-gray-600">Vercel, Netlify</p>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   );

@@ -70,6 +70,7 @@ const MyApplications = () => {
       const reviewData = {
         scholarshipId: selectedApp.scholarshipId,
         universityName: selectedApp.universityName,
+        
         userName: user.displayName || user.email,
         userEmail: user.email,
         userImage: user.photoURL || "",

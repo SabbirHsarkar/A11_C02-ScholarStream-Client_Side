@@ -17,8 +17,7 @@ const MyReviews = () => {
   useEffect(() => {
     if (!user) return;
 
-    axiosSecure
-      .get(`/reviews/user/${user.email}`)
+    axiosSecure.get(`/reviews/user/${user.email}`)
       .then(res => setReviews(res.data))
       .catch(err => console.log(err));
   }, [axiosSecure, user]);
