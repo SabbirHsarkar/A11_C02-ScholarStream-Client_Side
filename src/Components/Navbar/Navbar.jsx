@@ -6,103 +6,72 @@ import { FaChevronDown } from "react-icons/fa";
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
-  const navItems = (
-    <>
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          `px-4 py-2 font-medium transition rounded-lg ${
-            isActive
-              ? "text-teal-600 bg-teal-50"
-              : "text-gray-700 hover:text-teal-600 hover:bg-teal-50"
-          }`
-        }
-      >
-        Home
-      </NavLink>
-
-      <NavLink
-        to="/all-scholarships"
-        className={({ isActive }) =>
-          `px-4 py-2 font-medium transition rounded-lg ${
-            isActive
-              ? "text-teal-600 bg-teal-50"
-              : "text-gray-700 hover:text-teal-600 hover:bg-teal-50"
-          }`
-        }
-      >
-        All Scholarships
-      </NavLink>
-    </>
-  );
+  const navLinkClass = ({ isActive }) =>
+    `block px-4 py-2 rounded-lg font-medium transition ${
+      isActive
+        ? "text-teal-600 bg-teal-50"
+        : "text-gray-700 hover:text-teal-600 hover:bg-teal-50"
+    }`;
 
   return (
-    <div className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 left-0 z-50 border-b border-teal-100">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-teal-100">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
 
         {/* LOGO */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-2xl border-2 border-teal-500 flex items-center justify-center text-teal-600 font-extrabold text-xl shadow-sm group-hover:shadow-md transition">
+        <Link to="/" className="flex items-center gap-2">
+          <div className="w-9 h-9 rounded-xl border-2 border-teal-500 flex items-center justify-center text-teal-600 font-extrabold text-lg">
             S
           </div>
-          <span className="font-bold text-2xl text-gray-800 tracking-wide group-hover:text-teal-700 transition">
+          <span className="text-xl font-bold text-gray-800">
             ScholarStream
           </span>
         </Link>
 
-        {/* CENTER NAV */}
-        <div className="hidden md:flex gap-6">{navItems}</div>
+        {/* DESKTOP NAV */}
+        <nav className="hidden md:flex items-center gap-4">
+          <NavLink to="/" className={navLinkClass}>Home</NavLink>
+          <NavLink to="/all-scholarships" className={navLinkClass}>
+            All Scholarships
+          </NavLink>
+        </nav>
 
-        {/* RIGHT SECTION */}
-        <div className="flex items-center gap-4">
-
-          {/*USER LOGGED IN */}
+        {/* RIGHT */}
+        <div className="hidden md:flex items-center gap-3">
           {user ? (
             <>
-              {/* PROFILE DROPDOWN */}
+              {/* PROFILE */}
               <div className="dropdown dropdown-end">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="flex items-center gap-2 cursor-pointer"
-                >
+                <div tabIndex={0} className="flex items-center gap-2 cursor-pointer">
                   <img
-                    src={user?.photoURL}
+                    src={user.photoURL}
+                    className="w-9 h-9 rounded-full border border-teal-500 object-cover"
                     alt="profile"
-                    className="w-10 h-10 rounded-full border border-teal-500 shadow-sm object-cover"
                   />
-                  <FaChevronDown className="text-gray-600" />
+                  <FaChevronDown className="text-gray-600 text-sm" />
                 </div>
 
                 <ul
                   tabIndex={0}
-                  className="dropdown-content menu p-3 shadow-xl bg-white rounded-xl w-52 mt-3 border border-teal-100"
+                  className="dropdown-content menu mt-3 p-3 w-48 bg-white rounded-xl shadow-lg border border-teal-100"
                 >
                   <li>
-                    <Link to="/dashboard/profile" className="text-gray-700 hover:text-teal-600">
-                      Dashboard
-                    </Link>
+                    <Link to="/dashboard/profile">Dashboard</Link>
                   </li>
                   <li>
-                    <button
-                      onClick={logOut}
-                      className="text-red-500 font-semibold hover:bg-red-50 rounded-md"
-                    >
+                    <button onClick={logOut} className="text-red-500">
                       Logout
                     </button>
                   </li>
                 </ul>
               </div>
 
-              {/* DASHBOARD  */}
               <Link
                 to="/dashboard/profile"
-     className="border border-teal-600 hover:bg-teal-600 hover:text-white transition px-5 py-2 rounded-lg font-semibold text-teal-700 shadow-sm"
+                className="px-4 py-2 border border-teal-600 text-teal-700 rounded-lg font-semibold hover:bg-teal-600 hover:text-white transition"
               >
                 Dashboard
               </Link>
-
-               <button
+             <button
                       onClick={logOut}
     className="border border-red-600 hover:bg-red-600 hover:text-white
      transition px-5 py-2 rounded-lg font-semibold text-red-700 shadow-sm"
@@ -112,18 +81,15 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              {/* LOGIN BUTTON */}
               <Link
                 to="/login"
-                className="border border-teal-600 hover:bg-teal-600 hover:text-white transition px-5 py-2 rounded-lg font-semibold text-teal-700 shadow-sm"
+                className="px-4 py-2 border border-teal-600 text-teal-700 rounded-lg font-semibold hover:bg-teal-600 hover:text-white transition"
               >
                 Log In
               </Link>
-
-              {/* SIGN UP BUTTON */}
               <Link
                 to="/signup"
-                className="bg-orange-500 hover:bg-orange-600 transition px-5 py-2 rounded-lg font-semibold text-white shadow-sm"
+                className="px-4 py-2 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition"
               >
                 Sign Up
               </Link>
@@ -131,8 +97,8 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* MOBILE MENU BUTTON */}
-        <label htmlFor="mobile-drawer" className="md:hidden cursor-pointer ml-3">
+        {/* MOBILE BUTTON */}
+        <label htmlFor="mobile-drawer" className="md:hidden cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-7 w-7 text-gray-700"
@@ -149,43 +115,57 @@ const Navbar = () => {
       {/* MOBILE DRAWER */}
       <div className="drawer md:hidden">
         <input id="mobile-drawer" type="checkbox" className="drawer-toggle" />
+
         <div className="drawer-side z-50">
           <label htmlFor="mobile-drawer" className="drawer-overlay"></label>
 
-          <ul className="menu p-6 w-64 bg-white text-gray-700 space-y-4 shadow-xl border-r border-teal-100">
-            <h2 className="text-lg font-bold mb-4 text-teal-700">Menu</h2>
+          <div className="w-64 bg-white h-full p-6 space-y-4 border-r border-teal-100">
+            <h2 className="text-lg font-bold text-teal-700 mb-4">
+              ScholarStream
+            </h2>
 
-            {navItems}
+            <NavLink to="/" className={navLinkClass}>Home</NavLink>
+            <NavLink to="/all-scholarships" className={navLinkClass}>
+              All Scholarships
+            </NavLink>
 
-            {!user && (
-              <>
-                <Link
-                  to="/login"
-                  className="border border-teal-600 hover:bg-teal-600 hover:text-white px-4 py-2 rounded-lg shadow-sm"
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg shadow-sm"
-                >
-                  Sign Up
-                </Link>
-              </>
-            )}
-
-            {user && (
-              <button
-                onClick={logOut}
-                className="text-red-500 font-semibold mt-3 hover:bg-red-50 rounded-md px-3 py-2"
-              >
-                Logout
-              </button>
-            )}
-          </ul>
+            <div className="pt-4 border-t border-gray-200">
+              {user ? (
+                <>
+                  <Link
+                    to="/dashboard/profile"
+                    className="block px-4 py-2 rounded-lg hover:bg-teal-50"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={logOut}
+                    className="w-full text-left px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="block px-4 py-2 border border-teal-600 rounded-lg text-center text-teal-700 font-semibold hover:bg-teal-600 hover:text-white"
+                  >
+                    Log In
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="block px-4 py-2 bg-orange-500 text-white rounded-lg text-center font-semibold hover:bg-orange-600 mt-2"
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

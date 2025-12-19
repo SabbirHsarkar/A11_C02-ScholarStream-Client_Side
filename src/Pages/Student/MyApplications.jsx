@@ -69,6 +69,8 @@ const MyApplications = () => {
     try {
       const reviewData = {
         scholarshipId: selectedApp.scholarshipId,
+        scholarshipName: selectedApp.scholarshipName,
+
         universityName: selectedApp.universityName,
         
         userName: user.displayName || user.email,

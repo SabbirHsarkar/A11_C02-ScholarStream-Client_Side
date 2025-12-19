@@ -35,6 +35,8 @@ const Checkout = () => {
         userId: user.uid,
         userName: user.displayName,
         userEmail: user.email,
+        
+scholarshipName:scholarship.scholarshipName,
         universityName: scholarship.universityName,
         scholarshipCategory: scholarship.scholarshipCategory,
         degree: scholarship.degree,
