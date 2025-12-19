@@ -1,16 +1,65 @@
-# React 
+#  ScholarStream – Scholarship Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ScholarStream is a full-stack web application designed to simplify the scholarship application process for students and administrators.  
+Users can explore scholarships, apply online, make payments, and submit reviews, while admins can manage scholarships, applications, and users efficiently.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+🔗 Live Website
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+##  Features
+
+###  User Features
+- User authentication (Email/Password & Google Sign-in)
+- Browse and search scholarships
+- Apply for scholarships
+- Secure online payment integration
+- View application status (Pending / Processing / Completed / Rejected)
+- Submit reviews after application completion
+- Manage personal applications from dashboard
+
+###  Admin & Moderator Features
+- Add, update, and delete scholarships
+- Manage user applications
+- Update application status and feedback
+- Manage users and reviews
+
+---
+
+## Tech Stack
+
+### Frontend
+- React.js
+- React Router
+- Tailwind CSS
+- DaisyUI
+- Axios
+- Firebase Authentication
+- SweetAlert2
+- React Icons
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Firebase Admin SDK (JWT verification)
+- Stripe (Payment Gateway)
+
+### Deployment
+- Frontend: Vercel
+- Backend: Vercel
+- Database: MongoDB Atlas
+
+
+
+##  Authentication & Security
+- Firebase Authentication for user login
+- JWT-based secure API access
+- Protected routes for users and admins
+- Environment variables used for sensitive credentials
+
+
+
