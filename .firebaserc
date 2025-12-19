@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "scholarstream-dcdf5"
-  }
+    "default": "scholarstream-dcdf5",
+    "prod": "scholarstream-dcdf5"
+  },
+  "targets": {},
+  "etags": {}
 }

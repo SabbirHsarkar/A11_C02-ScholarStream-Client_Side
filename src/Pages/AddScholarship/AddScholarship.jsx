@@ -57,7 +57,7 @@ const AddScholarship = () => {
     };
 
    
-    // axios.post( "http://localhost:5000/scholarships",scholarshipData )
+    // axios.post( "https://scholarstream-beryl.vercel.app/scholarships",scholarshipData )
     axiosSecure.post("/scholarships",scholarshipData)
     .then(res=>{
       console.log(res.data);

@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(()=>{
    if(!user) return;
-   axios.get(`http://localhost:5000/users/role/${user.email}`)
+   axios.get(`https://scholarstream-beryl.vercel.app/users/role/${user.email}`)
     .then(res=>{
       setRole(res.data.role);
       setRoleLoading(false)
